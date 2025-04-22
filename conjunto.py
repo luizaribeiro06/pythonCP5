@@ -106,7 +106,6 @@ for i in range(len(a["data"])):
 
 
 #faça uma função para extrair a quantidade de medalhas totais, ouro, prata e bronze do país escolhido
-#print no celular
 
 def medalhas(pais):
     for i in range(len(a["data"])):
