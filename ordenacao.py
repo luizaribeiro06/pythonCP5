@@ -122,6 +122,7 @@ print(l)
 
 # EX: Altere os algoritmos vistos nesta aula para que estes ordenem uma lista de inteiros em ordem decrescente ao invés de ordem crescente.
 #ordem crescente é só alterar o sinal de < para >
+#se o exercício fosse "atendimento por prioridade" seria essa a resposta]
 
 def bubble_sort_decrescente(lista):
     n = len(lista)
