@@ -121,6 +121,7 @@ print(l)
 #fufncao que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento
 
 # EX: Altere os algoritmos vistos nesta aula para que estes ordenem uma lista de inteiros em ordem decrescente ao invés de ordem crescente.
+#ordem crescente é só alterar o sinal de < para >
 
 def bubble_sort_decrescente(lista):
     n = len(lista)
