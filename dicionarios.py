@@ -81,13 +81,35 @@ print(pessoas["Beatriz"][1])
 
 #execicios
 '''
-Exercício: Escreva uma função que receba uma frase como parâmetro e retorne um dicionário, onde cada chave seja um caractere e seu valor seja o número de vezes que o caractere aparece na frase lida. Exemplo: “Os ratos” -> {“O”:1,“ “:1, “s”:2, “r”:1, “a”:1,“t”:1,”o”:1}
+Exercício: Escreva uma função que receba uma frase como parâmetro e retorne um dicionário, onde cada chave seja um caractere e seu valor seja o número de vezes que o 
+caractere aparece na frase lida. Exemplo: “Os ratos” -> {“O”:1,“ “:1, “s”:2, “r”:1, “a”:1,“t”:1,”o”:1}
+'''
+def caracteres(frase):
+    dicionario = {}
+    for caracter in frase: #percorre cada caracter da frase
+        if caracter in dicionario: #se o caracter já estiver no dicionario, significa que ele ja apareceu antes, logo, aumenta a contagem
+            dicionario[caracter] +=1
+        else: #se ainda nao apareceu, adiciona
+            dicionario[caracter] = 1
 
+    return dicionario
 
+print(caracteres("Tudo bem"))
+
+'''
 Exercício: Escreva uma função que recebe uma lista e retorna uma nova lista sem elementos duplicados. Lembre-se que os elementos duplicados não precisam aparecer em posições consecutivas.
 Dica: use um dicionário.
+'''
+def no_duo(lista):
+    dicionario = {} #irá armazenar os itens únicos da lista
+    for i in lista: #percorre cada elemento da lista original
+        dicionario[i] = True #cada elemento é adicionado como uma chave, logo, se o item já tiver, ele não será duplicado pois chaves são únicas
+    return list(dicionario.keys())
 
+lista = [1,2,3,4,1,2]
+print(no_duo(lista))
 
+'''
 Exercício: Escreva uma função que recebe uma lista de compras e um dicionário contendo o preço de cada produto disponível em uma determinada loja, e retorna o valor total dos itens da lista que estejam disponíveis nesta loja. Por exemplo, para os dados:
 lista_de_compras = ’biscoito’, ’chocolate’, ’farinha’ 
 supermercado = {
@@ -99,8 +121,24 @@ supermercado = {
 ’farinha’:2.99
 }
 O valor retornado pela função será 8.47.
+'''
+def compras(lista, dicionario):
+    v_total = 0
+    for i in lista: #percorre cada item da lista
+        if i in dicionario: #verifica se o item está presente no dicionario
+            v_total += dicionario[i] #se sim, soma o preço do item ao total
+    return v_total
 
+lista = ["bolo", "chocolate", "farinha"]
+dicionario = {
+        "bolo": 1.20,
+        "chocolate":1.10,
+        "farinha": 1.00
+}
+v_total = compras(lista, dicionario)
+print(f'o total das compras é: {v_total:.2f}')
 
+'''
 Exercício: Sabe-se que uma molécula de RNA mensageiro é utilizada como base para sintetizar proteínas, no processo denominado de tradução. Cada trinca de bases de RNA mensageiro está relacionado com um aminoácido. Combinando vários aminoácidos, temos uma proteína. Com base na tabela (simplificada) de trincas de RNA abaixo, crie uma função que receba uma string
 representando uma molécula de RNA mensageiro válida, segundo essa tabela, e retorne a cadeia de aminoácidos que representam a proteína correspondente.
 
@@ -113,10 +151,14 @@ AAG Lisina
 UCU Ser
 UAU Tyr
 CAA Gln
+'''
+#fazer depois
 
+'''
 Exercício: Escreva uma função que converte números inteiros entre 1 e
 999 para algarismos romanos. Não converta o número para uma string.
 Use os três dicionários abaixo:
 • UNIDADES = { 0: ”, 1: ’I’, 2: ’II’, 3: ’III’, 4: ’IV’, 5: ’V’, 6: ’VI’, 7: ’VII’, 8: ’VIII’, 9: ’IX’ }
 • DEZENAS = { 0: ”, 1: ’X’, 2: ’XX’, 3: ’XXX’, 4: ’XL’, 5: ’L’, 6: ’LX’, 7: ’LXX’, 8: ’LXXX’, 9: ’XC’ }
 • CENTENAS = { 0: ”, 2: ’C’, 2: ’CC’, 3: ’CCC’, 4: ’CD’, 5: ’D’, 6: ’DC’, 7: ’DCC’, 8:’DCCC’, 9:’CM’ }'''
+
