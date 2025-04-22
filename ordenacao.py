@@ -108,17 +108,16 @@ print(l)
 l= [12,41,68,71,95,52]
 #vai comparando e joga o numero maior para frente
 i = 5
-for i in range(len(l)):
-    aux = l[i]
-    j = i - 1
-    while j >= 0 and l[j] > aux:
-        l[j+1] = l[j] #jogou uma casa para frente
-        j = j - 1 #e subtrai de uma unidade o número desejado
-        print(l)
-    l[j + 1] = aux
+for i in range(len(l)): 
+    aux = l[i] #elemento atual (a ser inserido no lugar certo)
+    j = i - 1 #indice anterior ao atual
+    while j >= 0 and l[j] > aux: #se o da esquerda for MAIOR que o atual
+        l[j+1] = l[j] #joga uma casa para frente
+        j = j - 1 #anda para trás para continuar comparando
+        print(l) #mostra a lista a cada troca
+    l[j + 1] = aux #insere o valor na posição correta
     print(l)
 print(l)
-
 
 #algoritmo com uma lista de varios elementos
 #fufncao que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento
