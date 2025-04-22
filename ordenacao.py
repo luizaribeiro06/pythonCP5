@@ -1,7 +1,6 @@
-
-
+#ordenação
 #bubble sort - ordenar o sistea pelo método de bolhas (bolha de maior tamanho sobe mais rapido para o topo da piscina,
-# traduzindo para python: maior elemento "borbulha" para ao fim da lista, será o último)
+#traduzindo para python: maior elemento "borbulha" para ao fim da lista, será o último)
 
 # quando precisa ordenar (de forma crescente, por ex)
 # exemplo - números inteiros
@@ -11,7 +10,6 @@
 
 l = [12,38,25,31,26]
 i=2
-
 
 #trocar os elementos para deixar a lista ordenada
 for iteracao in range(len(l)-1,0,-1): #vai andar -1 unidade até chegar no índice 0
