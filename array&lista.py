@@ -173,6 +173,16 @@ e = 4
 nova_tupla = tupla + (e,) #precisa colocar a vírgula quando só tem um elemento para identificar que é uma tupla
 print(nova_tupla)
 
+#em função:
+def adicionar_elemento(tupla, elemento):
+    lista = list(tupla) # Converter a tupla em uma lista
+    lista.append(elemento) # Adicionar o novo elemento
+    return tuple(lista) # Converter de volta para tupla
+# Exemplo de uso
+minha_tupla = (1, 2, 3)
+nova_tupla = adicionar_elemento(minha_tupla, 4)
+print(nova_tupla) # Saída: (1, 2, 3, 4
+
 '''
 2) Crie um maneira para remover elementos em uma
 tupla
@@ -186,32 +196,18 @@ for i in tupla:
         nova_lista.append(i)
 
 nova_tupla = tuple(nova_lista) # converte de volta para tupla
-
 print(nova_tupla)
 
-'''
-Exercício:
-Crie um maneira para adicionar elementos em uma tupla
-def adicionar_elemento(tupla, elemento):
-lista = list(tupla) # Converter a tupla em uma lista
-lista.append(elemento) # Adicionar o novo elemento
-return tuple(lista) # Converter de volta para tupla
-# Exemplo de uso
-minha_tupla = (1, 2, 3)
-nova_tupla = adicionar_elemento(minha_tupla, 4)
-print(nova_tupla) # Saída: (1, 2, 3, 4)
-
-
-Exercício:
-Crie um maneira para remover elementos em uma tupla 
+#em função
 def remover_elemento(tupla, elemento):
-lista = list(tupla) # Converter a tupla em uma lista 
-if elemento in lista:
-lista.remove(elemento) # Remover o elemento, se presente
-return tuple(lista) # Converter de volta para tupla
-
+    lista = list(tupla) # Converter a tupla em uma lista
+    if elemento in lista:
+        lista.remove(elemento) # Remover o elemento, se presente
+    return tuple(lista) # Converter de volta para tupla
+    
 # Exemplo de uso
 minha_tupla = (1, 2, 3, 4)
 nova_tupla = remover_elemento(minha_tupla, 3)
 print(nova_tupla) # Saída: (1, 2, 4)
-'''
+
+
