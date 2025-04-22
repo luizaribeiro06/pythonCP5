@@ -162,3 +162,17 @@ UNIDADES = { 0: "", 1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII
 DEZENAS = { 0: "", 1: "X", 2: "XX", 3: "XXX", 4: "XL", 5: "L", 6: "LX", 7: "LXX", 8: "LXXX", 9: "XC" }
 CENTENAS = { 0: "", 1: "C", 2: "CC", 3: "CCC", 4: "CD", 5: "D", 6: "DC", 7: "DCC", 8: "DCCC", 9: "CM" }'''
 
+def numero_romano(numero):
+    UNIDADES = {0: "", 1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII", 8: "VIII", 9: "IX"}
+    DEZENAS = {0: "", 1: "X", 2: "XX", 3: "XXX", 4: "XL", 5: "L", 6: "LX", 7: "LXX", 8: "LXXX", 9: "XC"}
+    CENTENAS = {0: "", 1: "C", 2: "CC", 3: "CCC", 4: "CD", 5: "D", 6: "DC", 7: "DCC", 8: "DCCC", 9: "CM"}
+
+    #dividir o número em centenas, dezenas e unidades
+    centenas = numero // 100
+    dezenas = (numero % 100) //10 #pega o resto da divisão do numero por 100 e depois divide por 10 p pegar as dezenas, de fato
+    unidades = numero % 10 #pega o resto da divisão do numero por 10
+
+    romano = CENTENAS[centenas] + DEZENAS[dezenas] + UNIDADES[unidades]
+    return romano
+
+print(numero_romano(99))
