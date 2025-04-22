@@ -176,7 +176,20 @@ print(nova_tupla)
 '''
 2) Crie um maneira para remover elementos em uma
 tupla
+'''
+tupla = (1, 2, 3, 4, 3)
+e_remover = 3
 
+nova_lista = [] # cria uma lista temporária para armazenar os elementos desejados
+for i in tupla:
+    if i != e_remover:
+        nova_lista.append(i)
+
+nova_tupla = tuple(nova_lista) # converte de volta para tupla
+
+print(nova_tupla)
+
+'''
 Exercício:
 Crie um maneira para adicionar elementos em uma tupla
 def adicionar_elemento(tupla, elemento):
