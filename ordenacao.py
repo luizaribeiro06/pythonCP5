@@ -117,9 +117,6 @@ for i in range(len(l)):
     print(l)
 print(l)
 
-#algoritmo com uma lista de varios elementos
-#fufncao que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento
-
 # EX: Altere os algoritmos vistos nesta aula para que estes ordenem uma lista de inteiros em ordem decrescente ao invés de ordem crescente.
 #ordem crescente é só alterar o sinal de < para >
 #se o exercício fosse "atendimento por prioridade" seria essa a resposta]
@@ -153,3 +150,172 @@ def insertion_sort_decrescente(lista):
         lista[j + 1] = chave
     return lista
 
+#busca sequencial
+#pode ser qualquer lista
+#percorre cada elemento
+
+#crie uma função que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento
+def busca(lista, chave):
+    for i in range(len(lista)):
+        if lista[i] == chave:
+            return i  # retorna o índice onde encontrou a chave
+    return -1  # se não encontrou
+
+valores = [10, 20, 33, 41, 55]
+print(busca(valores, 33)) #saída: 2 (mostra o índice que o elemento está)
+print(busca(valores, 99)) #saída -1 pois não encontrou (não está na lista)
+
+#busca binária
+#a lista precisa estar ordenada
+#divide a lista em metades, por isso tratamos do meio - meio
+
+#crie uma função que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento (mesmo exercicio da sequencial)
+def busca_binaria(lista, chave):
+    #define os limites da lista
+    inicio = 0 
+    fim = len(lista) - 1
+
+    while inicio <= fim:
+        meio = (inicio + fim) // 2 #calcula o índice do elemento do meio da parte que estamos procurando
+
+        if lista[meio] == chave: #retorna onde a chave está
+            return meio
+        elif lista[meio] < chave: #se tiver antes, anda um
+            inicio = meio + 1
+        else:
+            fim = meio - 1 #se tiver depois, volta um
+
+    return -1 #a chave não foi encontrada
+
+#procurando uma palavra no dicionario
+
+#sequencial
+def busca_sequencial_palavra(dicionario, palavra):
+    indices = [-1] * len(dicionario)  #inicializa a lista de índices com -1 (tamanho da lista)
+    count = 0  #contador para controlar os índices encontrados
+
+    for i in range(len(dicionario)):
+        chave = dicionario[i][0]  #palavra da tupla
+        if chave == palavra:
+            indices[count] = i  #amazena o índice encontrado
+            count += 1  #incrementa o contador
+
+    #retorna a lista de índices válidos (não negativos), cortada até o número de ocorrências encontradas
+    return [indices[i] for i in range(count)]
+
+
+#binaria
+def busca_binaria_palavra(dicionario, palavra):
+    inicio = 0
+    fim = len(dicionario) - 1
+    indices = [-1] * len(dicionario)  #inicializa a lista de índices com -1 (tamanho da lista)
+    count = 0  #contador para controlar os índices encontrados
+
+    while inicio <= fim:
+        meio = (inicio + fim) // 2
+        chave = dicionario[meio][0]  #a palavra que está no meio da lista de tuplas
+
+        if chave == palavra:
+            #palavra encontrada, agora buscamos para a esquerda e para a direita
+            #para a esquerda
+            i = meio
+            while i >= 0 and dicionario[i][0] == palavra:
+                indices[count] = i
+                count += 1
+                i -= 1
+
+            #para a direita
+            i = meio + 1
+            while i < len(dicionario) and dicionario[i][0] == palavra:
+                indices[count] = i
+                count += 1
+                i += 1
+
+            break  #já encontrou todas as ocorrências, podemos sair do loop
+
+        elif chave < palavra:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+
+    #retorna a lista com os índices encontrados, cortada até o número de ocorrências encontradas
+    return sorted(indices[:count])  #ordena a lista e retorna os índices válidos encontrados
+
+
+'''Crie um sistema que permita o registro de nomes.
+Implemente uma função de busca nesse sistema, de forma
+sequencial e binária.'''
+
+def registrar_nomes():
+    nomes = []
+    while True:
+        nome = input("Digite um nome para registrar (ou 'fim' para encerrar): ")
+        if nome == 'fim':
+            break
+        nomes.append(nome) 
+    return nomes
+
+#função de busca sequencial
+def busca_sequencial(nomes, chave):
+    indices = []
+    for i in range(len(nomes)):
+        if nomes[i] == chave:
+            indices.append(i)  #adiciona o índice na lista de resultados
+    return indices
+
+#função de busca binária (só se a lista estiver ordenada)
+def busca_binaria(nomes, chave):
+    inicio = 0
+    fim = len(nomes) - 1
+    indices = []
+
+    while inicio <= fim:
+        meio = (inicio + fim) // 2
+        if nomes[meio] == chave:
+            indices.append(meio)  #encontrou, adiciona o índice
+            
+            #verificar se há ocorrências à esquerda
+            i = meio - 1
+            while i >= 0 and nomes[i] == chave:
+                indices.append(i)
+                i -= 1
+            
+            #verificar se há ocorrências à direita
+            i = meio + 1
+            while i < len(nomes) and nomes[i] == chave:
+                indices.append(i)
+                i += 1
+
+            break
+        elif nomes[meio] < chave:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+
+    return sorted(indices)  #retorna os índices ordenados
+
+# Função principal
+def main():
+    #registrar nomes
+    nomes = registrar_nomes()
+
+    #solicitar nome para busca
+    nome_busca = input("Digite o nome a ser buscado: ")
+
+    #busca sequencial
+    resultado_sequencial = busca_sequencial(nomes, nome_busca)
+    if resultado_sequencial:
+        print(f"Nome '{nome_busca}' encontrado nas posições (sequencial): {resultado_sequencial}")
+    else:
+        print(f"Nome '{nome_busca}' não encontrado (sequencial).")
+
+    #busca binária (assumindo que a lista está ordenada)
+    resultado_binario = busca_binaria(nomes, nome_busca)
+    if resultado_binario:
+        print(f"Nome '{nome_busca}' encontrado nas posições (binária): {resultado_binario}")
+    else:
+        print(f"Nome '{nome_busca}' não encontrado (binária).")
+
+#rodar o programa
+if __name__ == "__main__":
+    main()
