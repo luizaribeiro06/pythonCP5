@@ -13,8 +13,6 @@ l = [12,38,25,31,26]
 i=2
 
 
-,
-
 #trocar os elementos para deixar a lista ordenada
 for iteracao in range(len(l)-1,0,-1): #vai andar -1 unidade até chegar no índice 0
     for i in range(iteracao): #len(l) - 1) vai até o fim da lista - 1, depois via -2 e assim vai
@@ -27,9 +25,19 @@ for iteracao in range(len(l)-1,0,-1): #vai andar -1 unidade até chegar no índi
 print(l)
 
 
-#selection sort - vai achar o menor elemento e colocar no início da lista
+#em função
+def bubble_sort(lista):
+    n = len(lista)  # tamanho da lista
+    for i in range(n):  # repete o processo n vezes
+        for j in range(0, n - 1 - i):  # percorre até o último elemento ainda não ordenado
+            if lista[j] > lista[j + 1]:  # se o da esquerda for maior que o da direita...
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]  # ... troca os dois de lugar
+    return lista
 
-#crie uma função que retorna o índice do menor elemento de uma lista (além disso, declarei o menor elemento por si só)
+
+#selection sort - vai achando o menor elemento e colocando no início da lista
+
+# Exercício: Crie uma função que retorna o índice do menor elemento de uma lista (além disso, declarei o menor elemento por si só)
 l= [12,1,95,9,4,25,71]
 
 menor = l[0]
@@ -41,15 +49,27 @@ for i in range(1, len(l)):
 print(menor)
 print(indice)
 
+#em função
+def indice_menor_elemento(lista):
+    menor = lista[0]    # considera o primeiro como menor
+    indice = 0          # guarda o índice do menor
 
-# agora pegue o menor a partir de uma posição inicial dada i, ele tem que retornar o indice desse tal menor de acordo
+    for i in range(1, len(lista)):
+        if lista[i] < menor:
+            menor = lista[i]  # atualiza o menor valor
+            indice_menor = i  # atualiza o índice do menor
+
+    return indice_menor
+
+
+# Exercício 2: Agora pegue o menor a partir de uma posição inicial dada i, ele tem que retornar o indice desse tal menor de acordo
 # com a lista inteira
 
 #como eu estava fazendo
 partida =1
 indice= 0
-menor = l[partida]
-for i in range(partida, len(l)):
+menor = l[partida] 
+for i in range(partida, len(l)): 
     if l[i] < menor:
         menor = l[i]
         indice = i
@@ -67,12 +87,10 @@ print(indice)
 
 #transformando em função
 def i_menor(l, indice):
-
     for i in range(indice + 1, len(l)):
         if l[i] < l[indice]:
             indice = i
     return indice
-
 
 #transformando em for
 for i in range(len(l)):
@@ -80,7 +98,6 @@ for i in range(len(l)):
     aux = l[i] #coloca o elemento menor para a auxiliar
     l[i] = l[aux_i]  # vai assumir ser o menor elemento na primeira posição da lista
     l[aux_i] = aux
-
 print(l)
 
 #insertion
@@ -102,5 +119,38 @@ for i in range(len(l)):
     print(l)
 print(l)
 
+
 #algoritmo com uma lista de varios elementos
 #fufncao que recebe lista, a chave de busca e retorne -1 se nao tiver na lista ou o indice do elemento
+
+# EX: Altere os algoritmos vistos nesta aula para que estes ordenem uma lista de inteiros em ordem decrescente ao invés de ordem crescente.
+
+def bubble_sort_decrescente(lista):
+    n = len(lista)
+    for i in range(n):
+        for j in range(0, n - 1 - i):
+            if lista[j] < lista[j + 1]:  # Troca se o atual for MENOR que o próximo
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+    return lista
+
+def selection_sort_decrescente(lista):
+    n = len(lista)
+    for i in range(n):
+        max_indice = i
+        for j in range(i + 1, n):
+            if lista[j] > lista[max_indice]:  # Procura o MAIOR valor
+                max_indice = j
+        lista[i], lista[max_indice] = lista[max_indice], lista[i]
+    return lista
+
+def insertion_sort_decrescente(lista):
+    for i in range(1, len(lista)):
+        chave = lista[i]
+        j = i - 1
+        # Move os elementos menores que a chave para a direita
+        while j >= 0 and lista[j] < chave:
+            lista[j + 1] = lista[j]
+            j -= 1
+        lista[j + 1] = chave
+    return lista
+
