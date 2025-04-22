@@ -119,5 +119,49 @@ def medalhas(pais):
 print(medalhas("Brasil"))
 
 #ex: gere vários perfis com nome, email, telefone, cidade, estados, país
+import random
+
+# Função para gerar um perfil
+def gerar_perfil():
+    nomes = ["João", "Maria", "Pedro"]
+    emails = ["joao@gmail.com", "maria@gmail.com", "pedro@gmail.com"]
+    telefones = ["(11) 99999-0001", "(11) 99999-0002", "(11) 99999-0003"]
+    cidades = ["São Paulo", "Rio de Janeiro", "Belo Horizonte"]
+    estados = ["SP", "RJ", "MG"]
+    paises = ["Brasil", "Argentina", "Chile"]
+
+    perfil = {
+        "nome": random.choice(nomes),
+        "email": random.choice(emails),
+        "telefone": random.choice(telefones),
+        "cidade": random.choice(cidades),
+        "estado": random.choice(estados),
+        "país": random.choice(paises)
+    }
+    
+    return perfil
+
+# gerar um conjunto de perfis (dicionários)
+def gerar_perfis(n):
+    perfis = []  # usar uma lista para armazenar os perfis
+    
+    while len(perfis) < n:
+        perfil = gerar_perfil()
+        
+        # verificar se o perfil já existe na lista
+        if perfil not in perfis:
+            perfis.append(perfil)  # adicionar o perfil se não for duplicado
+    
+    return perfis
+
+perfis = gerar_perfis(3) #gera 3 perfis
+
+# exibe os perfis gerados
+for i, perfil in enumerate(perfis, 1):
+    print(f"Perfil {i}:")
+    for chave, valor in perfil.items():
+        print(f"{chave.capitalize()}: {valor}")
+    print()
+
 
 #no cp, não iremos conseguir pegar dados json, por isso fazer na mesma lógica do ex das medalhas, dentro do pycharm
