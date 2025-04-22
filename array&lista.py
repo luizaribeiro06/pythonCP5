@@ -166,7 +166,14 @@ print(tupla)
 Exercício:
 1) Crie um maneira para adicionar elementos em uma
 tupla
+'''
+tupla = (1,2,3)
+e = 4
 
+nova_tupla = tupla + (e,) #precisa colocar a vírgula quando só tem um elemento para identificar que é uma tupla
+print(nova_tupla)
+
+'''
 2) Crie um maneira para remover elementos em uma
 tupla
 
