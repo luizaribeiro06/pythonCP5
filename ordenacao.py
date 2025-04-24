@@ -27,7 +27,7 @@ print(l)
 def bubble_sort(lista):
     n = len(lista)  # tamanho da lista
     for i in range(n):  # repete o processo n vezes
-        for j in range(0, n - 1 - i):  # percorre até o último elemento ainda não ordenado
+        for j in range(0, n - 1 - i):  # percorre até o último elemento ainda não ordenado, começa no 0, termina na len(lista) e subtrai um pois é o último elemento que precisa
             if lista[j] > lista[j + 1]:  # se o da esquerda for maior que o da direita...
                 lista[j], lista[j + 1] = lista[j + 1], lista[j]  # ... troca os dois de lugar
     return lista
