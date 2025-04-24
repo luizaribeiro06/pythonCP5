@@ -199,6 +199,7 @@ nova_tupla = tuple(nova_lista) # converte de volta para tupla
 print(nova_tupla)
 
 #em função
+#pop tira o indice e o remove tira o elemento
 def remover_elemento(tupla, elemento):
     lista = list(tupla) # Converter a tupla em uma lista
     if elemento in lista:
